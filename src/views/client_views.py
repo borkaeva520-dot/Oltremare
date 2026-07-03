@@ -239,6 +239,8 @@ class ClientOrdersListDialog(tk.Toplevel):
         self.grab_set()
         self._build(reservation_id, orders)
 
+    # Reservation functionality
+
     def _build(self, reservation_id, orders):
         OLabel(self, f"Заказы по брони №{reservation_id}",
                color=GOLD, font=FONT_H1, bg=BG_DARK).pack(pady=PAD_LG)
