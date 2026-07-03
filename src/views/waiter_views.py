@@ -145,7 +145,7 @@ class WaiterTableDetailDialog(tk.Toplevel):
             ))
 
         self.update_idletasks()
-
+# Order management module
     def _create_order(self):
         """Создать заказ для текущего стола"""
         # Сначала пытаемся взять официанта, назначенного на стол
