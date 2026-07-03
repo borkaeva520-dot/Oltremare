@@ -1,0 +1,204 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900">
+  <defs>
+    <style>
+      text { font-family: Arial, sans-serif; }
+      .actor-label { font-size: 13px; fill: #F5EFE6; font-weight: bold; }
+      .use-case { font-size: 11px; fill: #F5EFE6; }
+      .title { font-size: 20px; fill: #C9A96E; font-weight: bold; }
+      .subtitle { font-size: 13px; fill: #9A8F84; }
+      .boundary-label { font-size: 14px; fill: #C9A96E; font-weight: bold; }
+      .assoc { stroke: #C9A96E; stroke-width: 1.5; fill: none; }
+      .include { stroke: #9A8F84; stroke-width: 1; stroke-dasharray: 5,3; fill: none; }
+    </style>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="900" fill="#1A1714"/>
+
+  <!-- Title -->
+  <text x="600" y="38" class="title" text-anchor="middle">UML — Диаграмма вариантов использования</text>
+  <text x="600" y="58" class="subtitle" text-anchor="middle">Система управления рестораном «Oltremare»</text>
+  <line x1="80" y1="68" x2="1120" y2="68" stroke="#C9A96E" stroke-width="1"/>
+
+  <!-- ══════════════════════════════════════════ -->
+  <!--  SYSTEM BOUNDARY                          -->
+  <!-- ══════════════════════════════════════════ -->
+  <rect x="280" y="80" width="660" height="800" rx="10" fill="none" stroke="#4A433C" stroke-width="2" stroke-dasharray="8,4"/>
+  <text x="600" y="100" class="boundary-label" text-anchor="middle">ИС «Oltremare»</text>
+
+  <!-- ══════════════════════════════════════════ -->
+  <!--  ACTORS (stick figures)                   -->
+  <!-- ══════════════════════════════════════════ -->
+
+  <!-- Admin -->
+  <g id="actor-admin">
+    <circle cx="100" cy="200" r="18" stroke="#C9A96E" stroke-width="2" fill="#2A2420"/>
+    <line x1="100" y1="218" x2="100" y2="280" stroke="#C9A96E" stroke-width="2"/>
+    <line x1="60" y1="248" x2="140" y2="248" stroke="#C9A96E" stroke-width="2"/>
+    <line x1="100" y1="280" x2="70" y2="320" stroke="#C9A96E" stroke-width="2"/>
+    <line x1="100" y1="280" x2="130" y2="320" stroke="#C9A96E" stroke-width="2"/>
+    <text x="100" y="340" class="actor-label" text-anchor="middle">Администратор</text>
+  </g>
+
+  <!-- Waiter -->
+  <g id="actor-waiter">
+    <circle cx="100" cy="460" r="18" stroke="#C9A96E" stroke-width="2" fill="#2A2420"/>
+    <line x1="100" y1="478" x2="100" y2="540" stroke="#C9A96E" stroke-width="2"/>
+    <line x1="60" y1="508" x2="140" y2="508" stroke="#C9A96E" stroke-width="2"/>
+    <line x1="100" y1="540" x2="70" y2="580" stroke="#C9A96E" stroke-width="2"/>
+    <line x1="100" y1="540" x2="130" y2="580" stroke="#C9A96E" stroke-width="2"/>
+    <text x="100" y="600" class="actor-label" text-anchor="middle">Официант</text>
+  </g>
+
+  <!-- Kitchen -->
+  <g id="actor-kitchen">
+    <circle cx="1100" cy="460" r="18" stroke="#C9A96E" stroke-width="2" fill="#2A2420"/>
+    <line x1="1100" y1="478" x2="1100" y2="540" stroke="#C9A96E" stroke-width="2"/>
+    <line x1="1060" y1="508" x2="1140" y2="508" stroke="#C9A96E" stroke-width="2"/>
+    <line x1="1100" y1="540" x2="1070" y2="580" stroke="#C9A96E" stroke-width="2"/>
+    <line x1="1100" y1="540" x2="1130" y2="580" stroke="#C9A96E" stroke-width="2"/>
+    <text x="1100" y="600" class="actor-label" text-anchor="middle">Кухня</text>
+  </g>
+
+  <!-- Client -->
+  <g id="actor-client">
+    <circle cx="1100" cy="200" r="18" stroke="#C9A96E" stroke-width="2" fill="#2A2420"/>
+    <line x1="1100" y1="218" x2="1100" y2="280" stroke="#C9A96E" stroke-width="2"/>
+    <line x1="1060" y1="248" x2="1140" y2="248" stroke="#C9A96E" stroke-width="2"/>
+    <line x1="1100" y1="280" x2="1070" y2="320" stroke="#C9A96E" stroke-width="2"/>
+    <line x1="1100" y1="280" x2="1130" y2="320" stroke="#C9A96E" stroke-width="2"/>
+    <text x="1100" y="340" class="actor-label" text-anchor="middle">Клиент</text>
+  </g>
+
+  <!-- ══════════════════════════════════════════ -->
+  <!--  USE CASES — Auth block                   -->
+  <!-- ══════════════════════════════════════════ -->
+  <rect x="370" y="110" width="140" height="34" rx="17" fill="#332E29" stroke="#5580B0" stroke-width="1.5"/>
+  <text x="440" y="132" class="use-case" text-anchor="middle">Регистрация</text>
+
+  <rect x="530" y="110" width="140" height="34" rx="17" fill="#332E29" stroke="#5580B0" stroke-width="1.5"/>
+  <text x="600" y="132" class="use-case" text-anchor="middle">Вход в систему</text>
+
+  <!-- ══════════════════════════════════════════ -->
+  <!--  USE CASES — Admin block                  -->
+  <!-- ══════════════════════════════════════════ -->
+  <rect x="310" y="170" width="180" height="34" rx="17" fill="#332E29" stroke="#C9A96E" stroke-width="1.5"/>
+  <text x="400" y="192" class="use-case" text-anchor="middle">Управление пользователями</text>
+
+  <rect x="310" y="220" width="180" height="34" rx="17" fill="#332E29" stroke="#C9A96E" stroke-width="1.5"/>
+  <text x="400" y="242" class="use-case" text-anchor="middle">Формирование графика смен</text>
+
+  <rect x="310" y="270" width="180" height="34" rx="17" fill="#332E29" stroke="#C9A96E" stroke-width="1.5"/>
+  <text x="400" y="292" class="use-case" text-anchor="middle">Прикрепление к столикам</text>
+
+  <rect x="310" y="320" width="180" height="34" rx="17" fill="#332E29" stroke="#C9A96E" stroke-width="1.5"/>
+  <text x="400" y="342" class="use-case" text-anchor="middle">Просмотр статистики</text>
+
+  <rect x="310" y="370" width="180" height="34" rx="17" fill="#332E29" stroke="#C9A96E" stroke-width="1.5"/>
+  <text x="400" y="392" class="use-case" text-anchor="middle">Управление меню / складом</text>
+
+  <rect x="310" y="420" width="180" height="34" rx="17" fill="#332E29" stroke="#C9A96E" stroke-width="1.5"/>
+  <text x="400" y="442" class="use-case" text-anchor="middle">Создание акций / скидок</text>
+
+  <rect x="310" y="470" width="180" height="34" rx="17" fill="#332E29" stroke="#C9A96E" stroke-width="1.5"/>
+  <text x="400" y="492" class="use-case" text-anchor="middle">Схема зала (все статусы)</text>
+
+  <!-- ══════════════════════════════════════════ -->
+  <!--  USE CASES — Waiter block                 -->
+  <!-- ══════════════════════════════════════════ -->
+  <rect x="310" y="530" width="180" height="34" rx="17" fill="#332E29" stroke="#6B9E6B" stroke-width="1.5"/>
+  <text x="400" y="552" class="use-case" text-anchor="middle">Открытие / закрытие смены</text>
+
+  <rect x="310" y="580" width="180" height="34" rx="17" fill="#332E29" stroke="#6B9E6B" stroke-width="1.5"/>
+  <text x="400" y="602" class="use-case" text-anchor="middle">Создание заказа</text>
+
+  <rect x="310" y="630" width="180" height="34" rx="17" fill="#332E29" stroke="#6B9E6B" stroke-width="1.5"/>
+  <text x="400" y="652" class="use-case" text-anchor="middle">Добавление / удаление блюд</text>
+
+  <rect x="310" y="680" width="180" height="34" rx="17" fill="#332E29" stroke="#6B9E6B" stroke-width="1.5"/>
+  <text x="400" y="702" class="use-case" text-anchor="middle">Оформление заказа</text>
+
+  <rect x="310" y="730" width="180" height="34" rx="17" fill="#332E29" stroke="#6B9E6B" stroke-width="1.5"/>
+  <text x="400" y="752" class="use-case" text-anchor="middle">Формирование и оплата счёта</text>
+
+  <rect x="310" y="780" width="180" height="34" rx="17" fill="#332E29" stroke="#6B9E6B" stroke-width="1.5"/>
+  <text x="400" y="802" class="use-case" text-anchor="middle">Управление бронями</text>
+
+  <!-- ══════════════════════════════════════════ -->
+  <!--  USE CASES — Kitchen block                -->
+  <!-- ══════════════════════════════════════════ -->
+  <rect x="710" y="420" width="180" height="34" rx="17" fill="#332E29" stroke="#B05555" stroke-width="1.5"/>
+  <text x="800" y="442" class="use-case" text-anchor="middle">Просмотр заказов</text>
+
+  <rect x="710" y="470" width="180" height="34" rx="17" fill="#332E29" stroke="#B05555" stroke-width="1.5"/>
+  <text x="800" y="492" class="use-case" text-anchor="middle">Смена статусов заказов</text>
+
+  <rect x="710" y="520" width="180" height="34" rx="17" fill="#332E29" stroke="#B05555" stroke-width="1.5"/>
+  <text x="800" y="542" class="use-case" text-anchor="middle">Управление остатками</text>
+
+  <!-- ══════════════════════════════════════════ -->
+  <!--  USE CASES — Client block                 -->
+  <!-- ══════════════════════════════════════════ -->
+  <rect x="710" y="110" width="180" height="34" rx="17" fill="#332E29" stroke="#8B6BB0" stroke-width="1.5"/>
+  <text x="800" y="132" class="use-case" text-anchor="middle">Бронирование столика</text>
+
+  <rect x="710" y="160" width="180" height="34" rx="17" fill="#332E29" stroke="#8B6BB0" stroke-width="1.5"/>
+  <text x="800" y="182" class="use-case" text-anchor="middle">Отмена брони</text>
+
+  <rect x="710" y="210" width="180" height="34" rx="17" fill="#332E29" stroke="#8B6BB0" stroke-width="1.5"/>
+  <text x="800" y="232" class="use-case" text-anchor="middle">Просмотр меню</text>
+
+  <!-- ══════════════════════════════════════════ -->
+  <!--  ASSOCIATIONS                             -->
+  <!-- ══════════════════════════════════════════ -->
+
+  <!-- Auth -->
+  <line x1="140" y1="200" x2="370" y2="127" class="assoc"/>
+  <line x1="1060" y1="200" x2="670" y2="127" class="assoc"/>
+  <line x1="140" y1="200" x2="530" y2="127" class="assoc"/>
+
+  <!-- Admin -->
+  <line x1="140" y1="220" x2="310" y2="187" class="assoc"/>
+  <line x1="140" y1="230" x2="310" y2="237" class="assoc"/>
+  <line x1="140" y1="240" x2="310" y2="287" class="assoc"/>
+  <line x1="140" y1="250" x2="310" y2="337" class="assoc"/>
+  <line x1="140" y1="260" x2="310" y2="387" class="assoc"/>
+  <line x1="140" y1="270" x2="310" y2="437" class="assoc"/>
+  <line x1="140" y1="280" x2="310" y2="487" class="assoc"/>
+
+  <!-- Waiter -->
+  <line x1="140" y1="480" x2="310" y2="547" class="assoc"/>
+  <line x1="140" y1="490" x2="310" y2="597" class="assoc"/>
+  <line x1="140" y1="500" x2="310" y2="647" class="assoc"/>
+  <line x1="140" y1="510" x2="310" y2="697" class="assoc"/>
+  <line x1="140" y1="520" x2="310" y2="747" class="assoc"/>
+  <line x1="140" y1="530" x2="310" y2="797" class="assoc"/>
+
+  <!-- Kitchen -->
+  <line x1="1060" y1="460" x2="890" y2="437" class="assoc"/>
+  <line x1="1060" y1="470" x2="890" y2="487" class="assoc"/>
+  <line x1="1060" y1="480" x2="890" y2="537" class="assoc"/>
+
+  <!-- Client -->
+  <line x1="1060" y1="210" x2="890" y2="127" class="assoc"/>
+  <line x1="1060" y1="215" x2="890" y2="177" class="assoc"/>
+  <line x1="1060" y1="220" x2="890" y2="227" class="assoc"/>
+
+  <!-- ══════════════════════════════════════════ -->
+  <!--  LEGEND                                   -->
+  <!-- ══════════════════════════════════════════ -->
+  <rect x="290" y="845" width="620" height="44" rx="6" fill="#2A2420" stroke="#4A433C" stroke-width="1"/>
+  <text x="310" y="864" font-family="Arial" font-size="11" fill="#C9A96E">Легенда:</text>
+  <rect x="380" y="852" width="28" height="14" rx="7" fill="none" stroke="#C9A96E" stroke-width="1.5"/>
+  <text x="415" y="864" font-family="Arial" font-size="11" fill="#9A8F84">Администратор</text>
+  <rect x="520" y="852" width="28" height="14" rx="7" fill="none" stroke="#6B9E6B" stroke-width="1.5"/>
+  <text x="555" y="864" font-family="Arial" font-size="11" fill="#9A8F84">Официант</text>
+  <rect x="640" y="852" width="28" height="14" rx="7" fill="none" stroke="#B05555" stroke-width="1.5"/>
+  <text x="675" y="864" font-family="Arial" font-size="11" fill="#9A8F84">Кухня</text>
+  <rect x="730" y="852" width="28" height="14" rx="7" fill="none" stroke="#8B6BB0" stroke-width="1.5"/>
+  <text x="765" y="864" font-family="Arial" font-size="11" fill="#9A8F84">Клиент</text>
+
+  <text x="310" y="882" font-family="Arial" font-size="11" fill="#9A8F84">——— Связь актор–вариант</text>
+  <line x1="480" y1="878" x2="520" y2="878" stroke="#9A8F84" stroke-width="1" stroke-dasharray="5,3"/>
+  <text x="530" y="882" font-family="Arial" font-size="11" fill="#9A8F84">«include» / «extend»</text>
+</svg>

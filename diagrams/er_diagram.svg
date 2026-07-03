@@ -1,0 +1,263 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="960" viewBox="0 0 1400 960">
+  <defs>
+    <style>
+      text { font-family: Arial, sans-serif; }
+      .title    { font-size:20px; fill:#C9A96E; font-weight:bold; }
+      .entity   { font-size:12px; fill:#F5EFE6; font-weight:bold; }
+      .attr     { font-size:10px; fill:#F5EFE6; }
+      .pk       { font-size:10px; fill:#C9A96E; font-weight:bold; }
+      .fk       { font-size:10px; fill:#6B9E9E; }
+      .rel      { stroke:#C9A96E; stroke-width:1.5; fill:none; }
+      .subtitle { font-size:11px; fill:#9A8F84; }
+    </style>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#C9A96E"/>
+    </marker>
+  </defs>
+
+  <rect width="1400" height="960" fill="#1A1714"/>
+  <text x="700" y="34" class="title" text-anchor="middle">ER-диаграмма базы данных «oltremare_db»</text>
+  <text x="700" y="52" class="subtitle" text-anchor="middle">Физическая модель — MySQL/MariaDB · UTF-8mb4 · 3НФ</text>
+  <line x1="40" y1="60" x2="1360" y2="60" stroke="#C9A96E" stroke-width="1"/>
+
+  <!-- ══ Macro: entity box helper ══
+       Each entity: header rect (dark) + rows rect (card) -->
+
+  <!-- ─── roles ─── -->
+  <g id="e-roles">
+    <rect x="40" y="80" width="160" height="30" rx="4" fill="#2A2420" stroke="#C9A96E" stroke-width="1.5"/>
+    <text x="120" y="100" class="entity" text-anchor="middle">roles</text>
+    <rect x="40" y="110" width="160" height="70" fill="#332E29" stroke="#C9A96E" stroke-width="1"/>
+    <text x="52" y="128" class="pk">PK  id  INT AI</text>
+    <text x="52" y="146" class="attr">    name  VARCHAR(50) UQ</text>
+    <text x="52" y="162" class="attr">    description  VARCHAR(200)</text>
+  </g>
+
+  <!-- ─── users ─── -->
+  <g id="e-users">
+    <rect x="240" y="80" width="200" height="30" rx="4" fill="#2A2420" stroke="#C9A96E" stroke-width="1.5"/>
+    <text x="340" y="100" class="entity" text-anchor="middle">users</text>
+    <rect x="240" y="110" width="200" height="162" fill="#332E29" stroke="#C9A96E" stroke-width="1"/>
+    <text x="252" y="128" class="pk">PK  id  INT AI</text>
+    <text x="252" y="146" class="attr">    username  VARCHAR(100) UQ</text>
+    <text x="252" y="162" class="attr">    password_hash  CHAR(64)</text>
+    <text x="252" y="178" class="attr">    full_name  VARCHAR(200)</text>
+    <text x="252" y="194" class="attr">    phone  VARCHAR(20)</text>
+    <text x="252" y="210" class="attr">    email  VARCHAR(150)</text>
+    <text x="252" y="226" class="fk">FK  role_id → roles.id</text>
+    <text x="252" y="242" class="attr">    is_active  BOOL</text>
+    <text x="252" y="258" class="attr">    created_at  DATETIME</text>
+  </g>
+
+  <!-- ─── tables ─── -->
+  <g id="e-tables">
+    <rect x="480" y="80" width="180" height="30" rx="4" fill="#2A2420" stroke="#C9A96E" stroke-width="1.5"/>
+    <text x="570" y="100" class="entity" text-anchor="middle">tables</text>
+    <rect x="480" y="110" width="180" height="108" fill="#332E29" stroke="#C9A96E" stroke-width="1"/>
+    <text x="492" y="128" class="pk">PK  id  INT AI</text>
+    <text x="492" y="146" class="attr">    number  INT UQ</text>
+    <text x="492" y="162" class="attr">    capacity  INT (def 4)</text>
+    <text x="492" y="178" class="attr">    location  VARCHAR(100)</text>
+    <text x="492" y="194" class="attr">    status  ENUM</text>
+    <text x="492" y="210" class="attr">    (free/occupied/reserved)</text>
+  </g>
+
+  <!-- ─── shifts ─── -->
+  <g id="e-shifts">
+    <rect x="40" y="290" width="190" height="30" rx="4" fill="#2A2420" stroke="#C9A96E" stroke-width="1.5"/>
+    <text x="135" y="310" class="entity" text-anchor="middle">shifts</text>
+    <rect x="40" y="320" width="190" height="144" fill="#332E29" stroke="#C9A96E" stroke-width="1"/>
+    <text x="52" y="338" class="pk">PK  id  INT AI</text>
+    <text x="52" y="356" class="fk">FK  waiter_id → users.id</text>
+    <text x="52" y="372" class="attr">    shift_date  DATE</text>
+    <text x="52" y="388" class="attr">    start_time  TIME</text>
+    <text x="52" y="404" class="attr">    end_time  TIME</text>
+    <text x="52" y="420" class="attr">    status  ENUM</text>
+    <text x="52" y="436" class="attr">    opened_at / closed_at</text>
+    <text x="52" y="452" class="attr">    DATETIME</text>
+  </g>
+
+  <!-- ─── shift_tables ─── -->
+  <g id="e-shift-tables">
+    <rect x="260" y="290" width="180" height="30" rx="4" fill="#2A2420" stroke="#C9A96E" stroke-width="1.5"/>
+    <text x="350" y="310" class="entity" text-anchor="middle">shift_tables</text>
+    <rect x="260" y="320" width="180" height="72" fill="#332E29" stroke="#C9A96E" stroke-width="1"/>
+    <text x="272" y="338" class="pk">PK  id  INT AI</text>
+    <text x="272" y="356" class="fk">FK  shift_id → shifts.id</text>
+    <text x="272" y="374" class="fk">FK  table_id → tables.id</text>
+    <text x="272" y="392" class="attr">    UQ(shift_id, table_id)</text>
+  </g>
+
+  <!-- ─── reservations ─── -->
+  <g id="e-reservations">
+    <rect x="480" y="290" width="200" height="30" rx="4" fill="#2A2420" stroke="#C9A96E" stroke-width="1.5"/>
+    <text x="580" y="310" class="entity" text-anchor="middle">reservations</text>
+    <rect x="480" y="320" width="200" height="180" fill="#332E29" stroke="#C9A96E" stroke-width="1"/>
+    <text x="492" y="338" class="pk">PK  id  INT AI</text>
+    <text x="492" y="356" class="fk">FK  client_id → users.id</text>
+    <text x="492" y="374" class="attr">    client_name  VARCHAR(200)</text>
+    <text x="492" y="390" class="attr">    client_phone  VARCHAR(20)</text>
+    <text x="492" y="406" class="attr">    reservation_date  DATE</text>
+    <text x="492" y="422" class="attr">    reservation_time  TIME</text>
+    <text x="492" y="438" class="attr">    end_time  TIME</text>
+    <text x="492" y="454" class="attr">    guests_count  INT</text>
+    <text x="492" y="470" class="attr">    status  ENUM(active/cancelled)</text>
+    <text x="492" y="486" class="attr">    notes  TEXT</text>
+    <text x="492" y="502" class="attr">    created_at  DATETIME</text>
+  </g>
+
+  <!-- ─── reservation_tables ─── -->
+  <g id="e-res-tables">
+    <rect x="710" y="290" width="190" height="30" rx="4" fill="#2A2420" stroke="#C9A96E" stroke-width="1.5"/>
+    <text x="805" y="310" class="entity" text-anchor="middle">reservation_tables</text>
+    <rect x="710" y="320" width="190" height="90" fill="#332E29" stroke="#C9A96E" stroke-width="1"/>
+    <text x="722" y="338" class="pk">PK  id  INT AI</text>
+    <text x="722" y="356" class="fk">FK  reservation_id → res.id</text>
+    <text x="722" y="374" class="fk">FK  table_id → tables.id</text>
+    <text x="722" y="392" class="attr">    UQ(reservation_id, table_id)</text>
+  </g>
+
+  <!-- ─── dish_categories ─── -->
+  <g id="e-cats">
+    <rect x="700" y="80" width="180" height="30" rx="4" fill="#2A2420" stroke="#C9A96E" stroke-width="1.5"/>
+    <text x="790" y="100" class="entity" text-anchor="middle">dish_categories</text>
+    <rect x="700" y="110" width="180" height="72" fill="#332E29" stroke="#C9A96E" stroke-width="1"/>
+    <text x="712" y="128" class="pk">PK  id  INT AI</text>
+    <text x="712" y="146" class="attr">    name  VARCHAR(100) UQ</text>
+    <text x="712" y="162" class="attr">    description  TEXT</text>
+  </g>
+
+  <!-- ─── dishes ─── -->
+  <g id="e-dishes">
+    <rect x="920" y="80" width="190" height="30" rx="4" fill="#2A2420" stroke="#C9A96E" stroke-width="1.5"/>
+    <text x="1015" y="100" class="entity" text-anchor="middle">dishes</text>
+    <rect x="920" y="110" width="190" height="144" fill="#332E29" stroke="#C9A96E" stroke-width="1"/>
+    <text x="932" y="128" class="pk">PK  id  INT AI</text>
+    <text x="932" y="146" class="attr">    name  VARCHAR(200)</text>
+    <text x="932" y="162" class="fk">FK  category_id → cats.id</text>
+    <text x="932" y="178" class="attr">    description  TEXT</text>
+    <text x="932" y="194" class="attr">    price  DECIMAL(10,2)</text>
+    <text x="932" y="210" class="attr">    stock_quantity  INT</text>
+    <text x="932" y="226" class="attr">    is_available  BOOL</text>
+  </g>
+
+  <!-- ─── promotions ─── -->
+  <g id="e-promos">
+    <rect x="920" y="290" width="190" height="30" rx="4" fill="#2A2420" stroke="#C9A96E" stroke-width="1.5"/>
+    <text x="1015" y="310" class="entity" text-anchor="middle">promotions</text>
+    <rect x="920" y="320" width="190" height="162" fill="#332E29" stroke="#C9A96E" stroke-width="1"/>
+    <text x="932" y="338" class="pk">PK  id  INT AI</text>
+    <text x="932" y="356" class="attr">    name  VARCHAR(200)</text>
+    <text x="932" y="372" class="attr">    discount_percent DECIMAL</text>
+    <text x="932" y="388" class="attr">    start_date  DATE</text>
+    <text x="932" y="404" class="attr">    end_date  DATE</text>
+    <text x="932" y="420" class="fk">FK  dish_id → dishes.id</text>
+    <text x="932" y="436" class="fk">FK  category_id → cats.id</text>
+    <text x="932" y="452" class="attr">    is_active  BOOL</text>
+    <text x="932" y="468" class="attr">    (NULL = применить к кат.)</text>
+  </g>
+
+  <!-- ─── orders ─── -->
+  <g id="e-orders">
+    <rect x="480" y="560" width="200" height="30" rx="4" fill="#2A2420" stroke="#C9A96E" stroke-width="1.5"/>
+    <text x="580" y="580" class="entity" text-anchor="middle">orders</text>
+    <rect x="480" y="590" width="200" height="144" fill="#332E29" stroke="#C9A96E" stroke-width="1"/>
+    <text x="492" y="608" class="pk">PK  id  INT AI</text>
+    <text x="492" y="626" class="fk">FK  reservation_id → res.id</text>
+    <text x="492" y="642" class="fk">FK  table_id → tables.id</text>
+    <text x="492" y="658" class="fk">FK  waiter_id → users.id</text>
+    <text x="492" y="674" class="attr">    status  ENUM</text>
+    <text x="492" y="690" class="attr">    (composing/placed/…)</text>
+    <text x="492" y="706" class="attr">    placed_at  DATETIME</text>
+    <text x="492" y="722" class="attr">    created_at  DATETIME</text>
+  </g>
+
+  <!-- ─── order_items ─── -->
+  <g id="e-items">
+    <rect x="720" y="560" width="190" height="30" rx="4" fill="#2A2420" stroke="#C9A96E" stroke-width="1.5"/>
+    <text x="815" y="580" class="entity" text-anchor="middle">order_items</text>
+    <rect x="720" y="590" width="190" height="126" fill="#332E29" stroke="#C9A96E" stroke-width="1"/>
+    <text x="732" y="608" class="pk">PK  id  INT AI</text>
+    <text x="732" y="626" class="fk">FK  order_id → orders.id</text>
+    <text x="732" y="642" class="fk">FK  dish_id → dishes.id</text>
+    <text x="732" y="658" class="attr">    quantity  INT</text>
+    <text x="732" y="674" class="attr">    unit_price  DECIMAL</text>
+    <text x="732" y="690" class="attr">    discount_percent DECIMAL</text>
+  </g>
+
+  <!-- ─── bills ─── -->
+  <g id="e-bills">
+    <rect x="240" y="560" width="200" height="30" rx="4" fill="#2A2420" stroke="#C9A96E" stroke-width="1.5"/>
+    <text x="340" y="580" class="entity" text-anchor="middle">bills</text>
+    <rect x="240" y="590" width="200" height="144" fill="#332E29" stroke="#C9A96E" stroke-width="1"/>
+    <text x="252" y="608" class="pk">PK  id  INT AI</text>
+    <text x="252" y="626" class="fk">FK  reservation_id → res.id</text>
+    <text x="252" y="642" class="fk">FK  table_id → tables.id</text>
+    <text x="252" y="658" class="fk">FK  waiter_id → users.id</text>
+    <text x="252" y="674" class="attr">    total_amount  DECIMAL</text>
+    <text x="252" y="690" class="attr">    status  ENUM(pending/paid)</text>
+    <text x="252" y="706" class="attr">    created_at  DATETIME</text>
+    <text x="252" y="722" class="attr">    paid_at  DATETIME</text>
+  </g>
+
+  <!-- ─── receipts ─── -->
+  <g id="e-receipts">
+    <rect x="40" y="560" width="180" height="30" rx="4" fill="#2A2420" stroke="#C9A96E" stroke-width="1.5"/>
+    <text x="130" y="580" class="entity" text-anchor="middle">receipts</text>
+    <rect x="40" y="590" width="180" height="108" fill="#332E29" stroke="#C9A96E" stroke-width="1"/>
+    <text x="52" y="608" class="pk">PK  id  INT AI</text>
+    <text x="52" y="626" class="fk">FK  bill_id → bills.id  UQ</text>
+    <text x="52" y="642" class="attr">    receipt_number  VARCHAR UQ</text>
+    <text x="52" y="658" class="attr">    total_amount  DECIMAL</text>
+    <text x="52" y="674" class="attr">    payment_method ENUM</text>
+    <text x="52" y="690" class="attr">    issued_at  DATETIME</text>
+  </g>
+
+  <!-- ══ RELATIONS ══ -->
+  <!-- roles → users -->
+  <line x1="200" y1="155" x2="240" y2="155" class="rel" marker-end="url(#arr)"/>
+  <!-- users → shifts -->
+  <line x1="290" y1="272" x2="135" y2="290" class="rel" marker-end="url(#arr)"/>
+  <!-- shifts → shift_tables -->
+  <line x1="230" y1="375" x2="260" y2="375" class="rel" marker-end="url(#arr)"/>
+  <!-- tables → shift_tables -->
+  <line x1="570" y1="218" x2="350" y2="320" class="rel" marker-end="url(#arr)"/>
+  <!-- tables → reservation_tables -->
+  <line x1="660" y1="218" x2="805" y2="320" class="rel" marker-end="url(#arr)"/>
+  <!-- reservations → reservation_tables -->
+  <line x1="680" y1="390" x2="710" y2="370" class="rel" marker-end="url(#arr)"/>
+  <!-- dish_categories → dishes -->
+  <line x1="880" y1="146" x2="920" y2="146" class="rel" marker-end="url(#arr)"/>
+  <!-- dishes → promotions -->
+  <line x1="1015" y1="254" x2="1015" y2="290" class="rel" marker-end="url(#arr)"/>
+  <!-- dish_categories → promotions -->
+  <line x1="790" y1="182" x2="930" y2="400" class="rel" marker-end="url(#arr)"/>
+  <!-- reservations → orders -->
+  <line x1="580" y1="500" x2="580" y2="560" class="rel" marker-end="url(#arr)"/>
+  <!-- tables → orders -->
+  <line x1="570" y1="218" x2="560" y2="560" class="rel" marker-end="url(#arr)"/>
+  <!-- users → orders (waiter) -->
+  <line x1="340" y1="272" x2="530" y2="560" class="rel" marker-end="url(#arr)"/>
+  <!-- orders → order_items -->
+  <line x1="680" y1="645" x2="720" y2="645" class="rel" marker-end="url(#arr)"/>
+  <!-- dishes → order_items -->
+  <line x1="1015" y1="254" x2="870" y2="660" class="rel" marker-end="url(#arr)"/>
+  <!-- bills → receipts -->
+  <line x1="240" y1="660" x2="220" y2="660" class="rel" marker-end="url(#arr)"/>
+  <!-- reservations → bills -->
+  <line x1="510" y1="500" x2="400" y2="560" class="rel" marker-end="url(#arr)"/>
+  <!-- tables → bills -->
+  <line x1="530" y1="218" x2="330" y2="560" class="rel" marker-end="url(#arr)"/>
+  <!-- users → bills -->
+  <line x1="300" y1="272" x2="300" y2="560" class="rel" marker-end="url(#arr)"/>
+
+  <!-- legend -->
+  <rect x="40" y="860" width="560" height="60" rx="6" fill="#2A2420" stroke="#4A433C" stroke-width="1"/>
+  <text x="60" y="882" font-family="Arial" font-size="11" fill="#C9A96E" font-weight="bold">Обозначения:</text>
+  <text x="60" y="900" font-family="Arial" font-size="10" fill="#C9A96E">PK</text>
+  <text x="80" y="900" font-family="Arial" font-size="10" fill="#9A8F84">— первичный ключ (AUTO_INCREMENT)</text>
+  <text x="280" y="900" font-family="Arial" font-size="10" fill="#6B9E9E">FK</text>
+  <text x="300" y="900" font-family="Arial" font-size="10" fill="#9A8F84">— внешний ключ</text>
+  <text x="420" y="900" font-family="Arial" font-size="10" fill="#9A8F84">UQ — уникальный</text>
+  <text x="60" y="916" font-family="Arial" font-size="10" fill="#9A8F84">ENGINE=InnoDB · DEFAULT CHARSET=utf8mb4 · Все FK с ON DELETE соответствующим образом</text>
+</svg>
